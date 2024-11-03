@@ -19,6 +19,7 @@ def main():
                 return
 
         screen.fill((100, 100, 100))
+        player.update(dt)
         player.draw(screen)
         pg.display.flip()
 
