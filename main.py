@@ -1,5 +1,6 @@
 import pygame as pg
 from constants import SCREEN_WIDTH, SCREEN_HEIGHT
+from player import Player
 
 
 def main():
@@ -10,6 +11,7 @@ def main():
     clock = pg.time.Clock()
     dt = 0
 
+    player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
     running = True
     while running:
         for event in pg.event.get():
@@ -17,6 +19,7 @@ def main():
                 return
 
         screen.fill((100, 100, 100))
+        player.draw(screen)
         pg.display.flip()
 
         dt = clock.tick(60) / 1000
