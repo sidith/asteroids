@@ -1,30 +1,37 @@
 import pygame as pg
 from constants import SCREEN_WIDTH, SCREEN_HEIGHT
 from player import Player
+from asteroid import Asteroid
+from asteroidfield import AsteroidField
 
 
 def main():
     print("Starting asteroids!")
-    pg.init()
+    _ = pg.init()
     screen = pg.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
     clock = pg.time.Clock()
     dt = 0
 
-    updateable = pg.sprite.Group()
+    updatable = pg.sprite.Group()
     drawable = pg.sprite.Group()
+    asteroids = pg.sprite.Group()
 
-    Player.containers = (updateable, drawable)
+    Player.containers = (updatable, drawable)
     player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
+
+    Asteroid.containers = (asteroids, updatable, drawable)
+    AsteroidField.containers = (updatable)
+    asteroid_field = AsteroidField()
 
     running = True
     while running:
         for event in pg.event.get():
             if event.type == pg.QUIT:
-                return
+                running = False
 
         screen.fill((100, 100, 100))
-        for u in updateable:
+        for u in updatable:
             u.update(dt)
         for d in drawable:
             d.draw(screen)
