@@ -11,7 +11,12 @@ def main():
     clock = pg.time.Clock()
     dt = 0
 
+    updateable = pg.sprite.Group()
+    drawable = pg.sprite.Group()
+
+    Player.containers = (updateable, drawable)
     player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
+
     running = True
     while running:
         for event in pg.event.get():
@@ -19,8 +24,11 @@ def main():
                 return
 
         screen.fill((100, 100, 100))
-        player.update(dt)
-        player.draw(screen)
+        for u in updateable:
+            u.update(dt)
+        for d in drawable:
+            d.draw(screen)
+
         pg.display.flip()
 
         dt = clock.tick(60) / 1000
