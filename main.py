@@ -24,7 +24,7 @@ def main():
 
     Asteroid.containers = (asteroids, updatable, drawable)
     AsteroidField.containers = (updatable)
-    asteroid_field = AsteroidField()
+    _ = AsteroidField()
 
     Shot.containers = (shots, updatable, drawable)
 
@@ -43,7 +43,7 @@ def main():
                 return
             for s in shots:
                 if a.collides_with(s):
-                    a.kill()
+                    a.split()
         for d in drawable:
             d.draw(screen)
         pg.display.flip()
