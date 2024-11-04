@@ -3,6 +3,7 @@ from constants import SCREEN_WIDTH, SCREEN_HEIGHT
 from player import Player
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
+from shot import Shot
 
 
 def main():
@@ -16,6 +17,7 @@ def main():
     updatable = pg.sprite.Group()
     drawable = pg.sprite.Group()
     asteroids = pg.sprite.Group()
+    shots = pg.sprite.Group()
 
     Player.containers = (updatable, drawable)
     player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
@@ -23,6 +25,8 @@ def main():
     Asteroid.containers = (asteroids, updatable, drawable)
     AsteroidField.containers = (updatable)
     asteroid_field = AsteroidField()
+
+    Shot.containers = (shots, updatable, drawable)
 
     running = True
     while running:
