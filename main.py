@@ -41,9 +41,11 @@ def main():
             if a.collides_with(player):
                 print("Game Over")
                 return
+            for s in shots:
+                if a.collides_with(s):
+                    a.kill()
         for d in drawable:
             d.draw(screen)
-
         pg.display.flip()
 
         dt = clock.tick(60) / 1000
